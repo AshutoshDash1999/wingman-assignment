@@ -1,4 +1,6 @@
+import { AppSidebar } from "@/components/app-sidebar";
 import { ThemeProvider } from "@/components/theme-provider";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -19,7 +21,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider attribute="class" defaultTheme="light">
-          {children}
+          <SidebarProvider>
+            <AppSidebar />
+            {children}
+          </SidebarProvider>
         </ThemeProvider>
       </body>
     </html>
