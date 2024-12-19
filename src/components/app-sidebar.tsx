@@ -10,6 +10,8 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import Image from "next/image";
+import { Separator } from "./ui/separator";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 // Menu items.
 const items = [
@@ -43,23 +45,34 @@ export function AppSidebar() {
           unoptimized={true}
           className="p-1"
         />
+        <Separator className="my-6 rounded-lg bg-muted/30 w-12" />
       </SidebarHeader>
 
       <SidebarContent className="bg-primary">
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className="gap-4">
+            <SidebarMenu className="gap-6">
               {items.map((item) => (
                 <SidebarMenuItem
                   key={item.title}
                   className="flex justify-center"
                 >
-                  <a href={item.url}>
-                    <item.icon
-                      className="text-secondary p-2  rounded hover:bg-white hover:text-primary"
-                      size={45}
-                    />
-                  </a>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <a href={item.url}>
+                        <item.icon
+                          className="text-secondary p-2  rounded-lg hover:bg-white hover:text-primary transition-all duration-300 ease-in-out"
+                          size={45}
+                        />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent
+                      side="right"
+                      className="text-primary text-xl bg-white ml-2"
+                    >
+                      {item?.title}
+                    </TooltipContent>
+                  </Tooltip>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
