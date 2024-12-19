@@ -8,15 +8,15 @@ import { useState } from "react";
 const navItems = [
   {
     title: "Summary",
-    icon: <ChartPie />,
+    icon: ChartPie,
   },
   {
     title: "Sales",
-    icon: <Tag />,
+    icon: Tag,
   },
   {
     title: "Chats",
-    icon: <MessageSquare />,
+    icon: MessageSquare,
   },
 ];
 
@@ -24,7 +24,7 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState("Summary");
 
   return (
-    <nav className="flex items-center space-x-4 lg:space-x-6 border-b-2 border-muted/30 p-6">
+    <nav className="flex items-center space-x-4 lg:space-x-6 border-b-2 border-neutral-200 p-6">
       {navItems.map((item) => (
         <Button
           key={item.title}
@@ -37,7 +37,7 @@ const Header = () => {
               : "text-muted-foreground"
           )}
         >
-          {item.icon}
+          <item.icon />
           <span className="ml-2 text-xl font-semibold">{item.title}</span>
         </Button>
       ))}
