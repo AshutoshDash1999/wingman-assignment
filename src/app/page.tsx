@@ -1,3 +1,9 @@
+import { Header } from "./_components";
+
 export default function Home() {
-  return <main>Hello</main>;
+  return (
+    <main className=" w-full bg-white">
+      <Header />
+    </main>
+  );
 }

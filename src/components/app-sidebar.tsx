@@ -68,7 +68,7 @@ export function AppSidebar() {
                     </TooltipTrigger>
                     <TooltipContent
                       side="right"
-                      className="text-primary text-xl bg-white ml-2"
+                      className="text-primary text-xl bg-white ml-2 font-medium shadow-md"
                     >
                       {item?.title}
                     </TooltipContent>
