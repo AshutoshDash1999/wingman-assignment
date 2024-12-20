@@ -1,0 +1,130 @@
+{
+  "7days": [
+    {
+      "title": "Consultations",
+      "value": 22,
+      "change": -3
+    },
+    {
+      "title": "Orders Placed",
+      "value": 10,
+      "change": 5
+    },
+    {
+      "title": "Conversion",
+      "value": "48%",
+      "change": -2
+    },
+    {
+      "title": "Total Sales Value",
+      "value": 2350,
+      "change": -7
+    },
+    {
+      "title": "Avg Order Value",
+      "value": 235,
+      "change": 3
+    },
+    {
+      "title": "Commission Paid",
+      "value": 220,
+      "change": -5
+    }
+  ],
+  "1month": [
+    {
+      "title": "Consultations",
+      "value": 30,
+      "change": 8
+    },
+    {
+      "title": "Orders Placed",
+      "value": 12,
+      "change": 2
+    },
+    {
+      "title": "Conversion",
+      "value": "50%",
+      "change": 1
+    },
+    {
+      "title": "Total Sales Value",
+      "value": 2600,
+      "change": 10
+    },
+    {
+      "title": "Avg Order Value",
+      "value": 215,
+      "change": -2
+    },
+    {
+      "title": "Commission Paid",
+      "value": 250,
+      "change": 7
+    }
+  ],
+  "6months": [
+    {
+      "title": "Consultations",
+      "value": 35,
+      "change": 15
+    },
+    {
+      "title": "Orders Placed",
+      "value": 15,
+      "change": 8
+    },
+    {
+      "title": "Conversion",
+      "value": "52%",
+      "change": 4
+    },
+    {
+      "title": "Total Sales Value",
+      "value": 3000,
+      "change": 20
+    },
+    {
+      "title": "Avg Order Value",
+      "value": 200,
+      "change": -5
+    },
+    {
+      "title": "Commission Paid",
+      "value": 280,
+      "change": 12
+    }
+  ],
+  "1year": [
+    {
+      "title": "Consultations",
+      "value": 40,
+      "change": 20
+    },
+    {
+      "title": "Orders Placed",
+      "value": 18,
+      "change": 12
+    },
+    {
+      "title": "Conversion",
+      "value": "55%",
+      "change": 7
+    },
+    {
+      "title": "Total Sales Value",
+      "value": 3500,
+      "change": 25
+    },
+    {
+      "title": "Avg Order Value",
+      "value": 190,
+      "change": -3
+    },
+    {
+      "title": "Commission Paid",
+      "value": 300,
+      "change": 15
+    }
+  ]
+}
