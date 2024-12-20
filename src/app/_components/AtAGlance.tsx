@@ -1,5 +1,6 @@
 "use client";
 
+import SectionLoadError from "@/components/common/SectionLoadError";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Select,
@@ -15,62 +16,73 @@ import {
   Check,
   Coins,
   DollarSignIcon,
+  Loader,
   MessageCircle,
   PiggyBank,
   Tag,
 } from "lucide-react";
 import { useState } from "react";
 
-const metrics = [
-  {
-    title: "Consultations",
-    value: 24,
-    change: 15,
-    prefix: MessageCircle,
-  },
-  {
-    title: "Orders Placed",
-    value: 12,
-    change: -15,
-    prefix: Tag,
-  },
-  {
-    title: "Conversion",
-    value: "50%",
-    change: -15,
-    prefix: Check,
-  },
-  {
-    title: "Total Sales Value",
-    value: 2400,
-    change: 15,
-    prefix: Coins,
-  },
-  {
-    title: "Avg Order Value",
-    value: 240,
-    change: 15,
-    prefix: DollarSignIcon,
-  },
-  {
-    title: "Commission Paid",
-    value: 240,
-    change: 15,
-    prefix: PiggyBank,
-  },
-];
-
 const AtAGlance = () => {
   const [selectedDuration, setSelectedDuration] = useState("7days");
 
   const {
     data: atAGlanceData,
-    // isLoading: isAtAGlanceDataLoading,
-    // error: atAGlanceDataError,
-    // mutate: refetchAtAGlanceData,
-  } = useApiData(`/api/v1/at-a-glance?duration=${selectedDuration}`);
+    isLoading: isAtAGlanceDataLoading,
+    error: atAGlanceDataError,
+  } = useApiData<{
+    data: {
+      consultations: { value: number; change: number };
+      orders_placed: { value: number; change: number };
+      conversion: { value: number; change: number };
+      total_sales_value: { value: number; change: number };
+      avg_order_value: { value: number; change: number };
+      commission_paid: { value: number; change: number };
+    };
+  }>(`/api/v1/at-a-glance?duration=${selectedDuration}`);
 
-  console.log("atAGlanceData :", atAGlanceData);
+  const metricsData = [
+    {
+      title: "Consultations",
+      value: atAGlanceData?.data?.consultations?.value,
+      change: atAGlanceData?.data?.consultations?.change,
+      prefix: MessageCircle,
+    },
+    {
+      title: "Orders Placed",
+      value: atAGlanceData?.data?.orders_placed?.value,
+      change: atAGlanceData?.data?.orders_placed?.change,
+      prefix: Tag,
+    },
+    {
+      title: "Conversion",
+      value: atAGlanceData?.data?.conversion?.value,
+      change: atAGlanceData?.data?.conversion?.change,
+      prefix: Check,
+    },
+    {
+      title: "Total Sales Value",
+      value: atAGlanceData?.data?.total_sales_value?.value,
+      change: atAGlanceData?.data?.total_sales_value?.change,
+      prefix: Coins,
+    },
+    {
+      title: "Avg Order Value",
+      value: atAGlanceData?.data?.avg_order_value?.value,
+      change: atAGlanceData?.data?.avg_order_value?.change,
+      prefix: DollarSignIcon,
+    },
+    {
+      title: "Commission Paid",
+      value: atAGlanceData?.data?.commission_paid?.value,
+      change: atAGlanceData?.data?.commission_paid?.change,
+      prefix: PiggyBank,
+    },
+  ];
+
+  if (atAGlanceDataError) {
+    return <SectionLoadError />;
+  }
 
   return (
     <>
@@ -89,42 +101,48 @@ const AtAGlance = () => {
             <SelectContent>
               <SelectItem value="7days">7 days</SelectItem>
               <SelectItem value="1month">1 month</SelectItem>
-              <SelectItem value="6month">6 months</SelectItem>
+              <SelectItem value="6months">6 months</SelectItem>
               <SelectItem value="1year">1 year</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-3">
-          {metrics.map((metric) => {
-            const isIncrease = metric?.change > 0;
+        <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          {metricsData.map((metric) => {
+            const isIncrease = metric?.change || 1 > 0;
 
             return (
-              <Card className="relative" key={metric?.title}>
-                <CardContent className="pt-6 flex flex-col gap-3">
-                  <p className="text-sm text-muted-foreground uppercase tracking-wider flex gap-2 items-center font-semibold">
-                    <metric.prefix className="size-4" />
-                    {metric?.title}
-                  </p>
-                  <h3 className="text-2xl font-medium">
-                    {typeof metric?.value === "number"
-                      ? metric?.value.toLocaleString()
-                      : metric?.value}
-                  </h3>
-                  <div
-                    className={`flex items-center gap-1 ${
-                      isIncrease ? "text-emerald-600" : "text-red-600"
-                    }`}
-                  >
-                    {isIncrease ? (
-                      <ArrowUpIcon className="h-4 w-4" />
-                    ) : (
-                      <ArrowDownIcon className="h-4 w-4" />
-                    )}
-                    {Math.abs(metric?.change)}%{" "}
-                    {isIncrease ? "increase" : "decrease"}
+              <Card key={metric?.title}>
+                {isAtAGlanceDataLoading ? (
+                  <div className="flex items-center justify-center h-32">
+                    <Loader className="animate-spin size-12 text-neutral-300" />
                   </div>
-                </CardContent>
+                ) : (
+                  <CardContent className="pt-6 flex flex-col gap-3">
+                    <p className="text-sm text-muted-foreground uppercase tracking-wider flex gap-2 items-center font-semibold">
+                      <metric.prefix className="size-4" />
+                      {metric?.title}
+                    </p>
+                    <h3 className="text-2xl font-medium">
+                      {typeof metric?.value === "number"
+                        ? metric?.value.toLocaleString()
+                        : metric?.value}
+                    </h3>
+                    <div
+                      className={`flex items-center gap-1 ${
+                        isIncrease ? "text-emerald-600" : "text-red-600"
+                      }`}
+                    >
+                      {isIncrease ? (
+                        <ArrowUpIcon className="h-4 w-4" />
+                      ) : (
+                        <ArrowDownIcon className="h-4 w-4" />
+                      )}
+                      {Math.abs(metric?.change || 0)}%{" "}
+                      {isIncrease ? "increase" : "decrease"}
+                    </div>
+                  </CardContent>
+                )}
               </Card>
             );
           })}

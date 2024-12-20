@@ -1,21 +1,14 @@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { AlertCircle, RefreshCw } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 
 export default function SectionLoadError() {
-  const handleRetry = () => {
-    // Implement retry logic here
-    console.log("Retrying...");
-  };
-
   return (
     <Card className="w-full mx-auto">
       <CardHeader>
@@ -41,12 +34,6 @@ export default function SectionLoadError() {
           the problem persists, please report it to our support team.
         </p>
       </CardContent>
-      <CardFooter className="flex justify-between">
-        <Button variant="outline" onClick={handleRetry}>
-          <RefreshCw className="mr-2 h-4 w-4" />
-          Retry
-        </Button>
-      </CardFooter>
     </Card>
   );
 }
