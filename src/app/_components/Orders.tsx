@@ -1,3 +1,6 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import {
   Table,
@@ -8,8 +11,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import dayjs from "dayjs";
-import { MoveUpRight } from "lucide-react";
+import { ArrowUpDown, MoveUpRight } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 const orders = [
   {
@@ -64,6 +68,33 @@ const orders = [
 ];
 
 const Orders = () => {
+  const [ordersData, setOrdersData] = useState(orders || []);
+
+  const applySort = (key: string) => {
+    if (key === "date") {
+      const sortedData = ordersData.sort((a: any, b: any) =>
+        new Date(a.date) > new Date(b.date) ? 1 : -1
+      );
+      setOrdersData([...sortedData]);
+    } else if (key === "orderValue") {
+      const sortedData = ordersData.sort((a: any, b: any) =>
+        parseFloat(a?.orderValue?.replace(/[^0-9.-]+/g, "")) >
+        parseFloat(b?.orderValue?.replace(/[^0-9.-]+/g, ""))
+          ? 1
+          : -1
+      );
+      setOrdersData([...sortedData]);
+    } else if (key === "commission") {
+      const sortedData = ordersData.sort((a: any, b: any) =>
+        parseFloat(a?.commission?.replace(/[^0-9.-]+/g, "")) >
+        parseFloat(b?.commission?.replace(/[^0-9.-]+/g, ""))
+          ? 1
+          : -1
+      );
+      setOrdersData([...sortedData]);
+    }
+  };
+
   return (
     <section>
       <h2 className="text-3xl font-medium tracking-tight mb-8 mt-6">Orders</h2>
@@ -72,15 +103,45 @@ const Orders = () => {
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="">Product</TableHead>
-              <TableHead>Date</TableHead>
+              <TableHead>Product</TableHead>
+              <TableHead>
+                <p className="flex items-center gap-1">
+                  Date
+                  <Button
+                    className="h-6 p-1 bg-white text-black hover:text-white"
+                    onClick={() => applySort("date")}
+                  >
+                    <ArrowUpDown className="size-4" />
+                  </Button>
+                </p>
+              </TableHead>
               <TableHead>Time Spent</TableHead>
-              <TableHead>Order Value</TableHead>
-              <TableHead>Commision</TableHead>
+              <TableHead>
+                <p className="flex items-center gap-1">
+                  Order Value
+                  <Button
+                    className="h-6 p-1 bg-white text-black hover:text-white"
+                    onClick={() => applySort("orderValue")}
+                  >
+                    <ArrowUpDown className="size-4" />
+                  </Button>
+                </p>
+              </TableHead>
+              <TableHead>
+                <p className="flex items-center gap-1">
+                  Commission
+                  <Button
+                    className="h-6 p-1 bg-white text-black hover:text-white"
+                    onClick={() => applySort("commission")}
+                  >
+                    <ArrowUpDown className="size-4" />
+                  </Button>
+                </p>
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orders.map((order) => (
+            {ordersData.map((order) => (
               <TableRow key={order?.product}>
                 <TableCell className="font-medium">{order?.product}</TableCell>
                 <TableCell>
