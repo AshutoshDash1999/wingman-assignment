@@ -72,24 +72,47 @@ const Orders = () => {
 
   const applySort = (key: string) => {
     if (key === "date") {
-      const sortedData = ordersData.sort((a: any, b: any) =>
-        new Date(a.date) > new Date(b.date) ? 1 : -1
+      const sortedData = ordersData.sort(
+        (
+          a: {
+            date: string;
+          },
+          b: {
+            date: string;
+          }
+        ) => (new Date(a.date) > new Date(b.date) ? 1 : -1)
       );
       setOrdersData([...sortedData]);
     } else if (key === "orderValue") {
-      const sortedData = ordersData.sort((a: any, b: any) =>
-        parseFloat(a?.orderValue?.replace(/[^0-9.-]+/g, "")) >
-        parseFloat(b?.orderValue?.replace(/[^0-9.-]+/g, ""))
-          ? 1
-          : -1
+      const sortedData = ordersData.sort(
+        (
+          a: {
+            orderValue: string;
+          },
+          b: {
+            orderValue: string;
+          }
+        ) =>
+          parseFloat(a?.orderValue?.replace(/[^0-9.-]+/g, "")) >
+          parseFloat(b?.orderValue?.replace(/[^0-9.-]+/g, ""))
+            ? 1
+            : -1
       );
       setOrdersData([...sortedData]);
     } else if (key === "commission") {
-      const sortedData = ordersData.sort((a: any, b: any) =>
-        parseFloat(a?.commission?.replace(/[^0-9.-]+/g, "")) >
-        parseFloat(b?.commission?.replace(/[^0-9.-]+/g, ""))
-          ? 1
-          : -1
+      const sortedData = ordersData.sort(
+        (
+          a: {
+            commission: string;
+          },
+          b: {
+            commission: string;
+          }
+        ) =>
+          parseFloat(a?.commission?.replace(/[^0-9.-]+/g, "")) >
+          parseFloat(b?.commission?.replace(/[^0-9.-]+/g, ""))
+            ? 1
+            : -1
       );
       setOrdersData([...sortedData]);
     }
