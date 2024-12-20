@@ -55,8 +55,8 @@ const Insights = () => {
       <h2 className="text-3xl font-medium tracking-tight mt-6 mb-8">
         Insights
       </h2>
-      <div className="grid grid-cols-3 gap-6 md:grid-cols-2">
-        <Card className="col-span-1">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-4">
+        <Card className="md:col-span-2">
           <CardHeader>
             <CardTitle>Bar Chart - Multiple</CardTitle>
             <CardDescription>Mon - June 2024</CardDescription>
@@ -121,7 +121,7 @@ const Insights = () => {
           </CardContent>
         </Card>
 
-        <Card className="col-span-1">
+        <Card className="md:col-span-1">
           <CardContent>
             <ChartContainer config={chartConfig}>
               <BarChart accessibilityLayer data={chartData}>
@@ -143,7 +143,8 @@ const Insights = () => {
             </ChartContainer>
           </CardContent>
         </Card>
-        <Card className="col-span-1"></Card>
+
+        <Card className="md:col-span-1"></Card>
       </div>
     </div>
   );
