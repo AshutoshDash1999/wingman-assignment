@@ -1,130 +1,106 @@
 {
-  "7days": [
-    {
-      "title": "Consultations",
+  "7days": {
+    "consultations": {
       "value": 22,
       "change": -3
     },
-    {
-      "title": "Orders Placed",
+    "orders_placed": {
       "value": 10,
       "change": 5
     },
-    {
-      "title": "Conversion",
+    "conversion": {
       "value": "48%",
       "change": -2
     },
-    {
-      "title": "Total Sales Value",
+    "total_sales_value": {
       "value": 2350,
       "change": -7
     },
-    {
-      "title": "Avg Order Value",
+    "avg_order_value": {
       "value": 235,
       "change": 3
     },
-    {
-      "title": "Commission Paid",
+    "commission_paid": {
       "value": 220,
       "change": -5
     }
-  ],
-  "1month": [
-    {
-      "title": "Consultations",
+  },
+  "1month": {
+    "consultations": {
       "value": 30,
       "change": 8
     },
-    {
-      "title": "Orders Placed",
+    "orders_placed": {
       "value": 12,
       "change": 2
     },
-    {
-      "title": "Conversion",
+    "conversion": {
       "value": "50%",
       "change": 1
     },
-    {
-      "title": "Total Sales Value",
+    "total_sales_value": {
       "value": 2600,
       "change": 10
     },
-    {
-      "title": "Avg Order Value",
+    "avg_order_value": {
       "value": 215,
       "change": -2
     },
-    {
-      "title": "Commission Paid",
+    "commission_paid": {
       "value": 250,
       "change": 7
     }
-  ],
-  "6months": [
-    {
-      "title": "Consultations",
+  },
+  "6months": {
+    "consultations": {
       "value": 35,
       "change": 15
     },
-    {
-      "title": "Orders Placed",
+    "orders_placed": {
       "value": 15,
       "change": 8
     },
-    {
-      "title": "Conversion",
+    "conversion": {
       "value": "52%",
       "change": 4
     },
-    {
-      "title": "Total Sales Value",
+    "total_sales_value": {
       "value": 3000,
       "change": 20
     },
-    {
-      "title": "Avg Order Value",
+    "avg_order_value": {
       "value": 200,
       "change": -5
     },
-    {
-      "title": "Commission Paid",
+    "commission_paid": {
       "value": 280,
       "change": 12
     }
-  ],
-  "1year": [
-    {
-      "title": "Consultations",
+  },
+  "1year": {
+    "consultations": {
       "value": 40,
       "change": 20
     },
-    {
-      "title": "Orders Placed",
+    "orders_placed": {
       "value": 18,
       "change": 12
     },
-    {
-      "title": "Conversion",
+    "conversion": {
       "value": "55%",
       "change": 7
     },
-    {
-      "title": "Total Sales Value",
+    "total_sales_value": {
       "value": 3500,
       "change": 25
     },
-    {
-      "title": "Avg Order Value",
+    "avg_order_value": {
       "value": 190,
       "change": -3
     },
-    {
-      "title": "Commission Paid",
+    "commission_paid": {
       "value": 300,
       "change": 15
     }
-  ]
+  }
 }
